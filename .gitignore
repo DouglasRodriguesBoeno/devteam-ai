@@ -1,0 +1,22 @@
+# Local project paths and execution evidence
+projects/registry.local.json
+.local/
+evaluations/runs/
+.worktrees/
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+auth.json
+*.pem
+*.key
+# Generated files
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "projects": [
+    {
+      "id": "sample-python",
+      "path": "C:/dev/sample-python",
+      "description": "Exemplo fictício; substitua pelo repositório autorizado",
+      "default_branch": "main",
+      "test_commands": ["python -m unittest discover -s tests -v"],
+      "notes": "Python; comandos são sugestões para revisão manual."
+    },
+    {
+      "id": "sample-web",
+      "path": "/home/user/projects/sample-web",
+      "description": "Exemplo POSIX fictício",
+      "default_branch": "main",
+      "test_commands": ["npm test", "npm run lint"],
+      "notes": "Inspecionar package.json e dependências antes de executar."
+    }
+  ]
+}
