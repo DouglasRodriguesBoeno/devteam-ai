@@ -16,6 +16,7 @@ REQUIRED = (
     'workflows/implement-feature.md', 'evaluations/scenarios.md',
     'evaluations/report-template.md', 'projects/README.md',
     'projects/registry.example.json',
+    'docs/models.md',
 )
 
 
@@ -58,10 +59,14 @@ def validate(root, registry):
         raise ValueError('configuração de agents divergente do contrato v0.1')
     for name in ('developer', 'qa'):
         agent = tomllib.loads((root / f'.codex/agents/{name}.toml').read_text(encoding='utf-8'))
-        if set(agent) != {'name', 'description', 'developer_instructions'} or agent['name'] != name:
+        required = {'name', 'description', 'developer_instructions'}
+        optional = {'model', 'model_reasoning_effort'}
+        if not required <= set(agent) or set(agent) - required - optional or agent['name'] != name:
             raise ValueError(f'contrato de agente inválido: {name}')
         if any(not isinstance(value, str) or not value.strip() for value in agent.values()):
             raise ValueError(f'campos de agente vazios: {name}')
+    if 'model' in config and (not isinstance(config['model'], str) or not config['model'].strip()):
+        raise ValueError('model principal deve ser uma string não vazia')
     check_registry(registry)
     for relative in REQUIRED:
         source = root / relative
@@ -81,6 +86,13 @@ def main():
     args = parser.parse_args()
     try:
         validate(ROOT, args.registry)
+    except json.JSONDecodeError as error:
+        print(
+            f'FAIL: {args.registry}: JSON inválido na linha {error.lineno}, '
+            f'coluna {error.colno}: {error.msg}',
+            file=sys.stderr,
+        )
+        return 1
     except (OSError, ValueError) as error:
         print(f'FAIL: {error}', file=sys.stderr)
         return 1

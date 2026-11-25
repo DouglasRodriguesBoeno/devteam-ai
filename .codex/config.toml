@@ -1,4 +1,6 @@
 # DevTeam AI v0.1: controls belong to the parent session.
+# Project preference; replace with a catalog slug or override with codex --model.
+model = "gpt-6.2-astra"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 

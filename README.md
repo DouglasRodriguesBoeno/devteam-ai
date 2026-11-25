@@ -39,7 +39,18 @@ codex --strict-config -s workspace-write -a on-request
 Revise os arquivos antes de confiar no projeto na interface do Codex. Projetos
 não confiáveis podem ignorar a configuração local. Confira as permissões da
 sessão e peça que confirme a disponibilidade de `developer` e `qa` antes de editar.
-O modelo é herdado da conta/configuração pessoal; nenhum modelo é fixado aqui.
+O modelo principal é uma preferência editável em `.codex/config.toml`.
+Developer e QA herdam essa escolha, salvo `model` específico em seus TOML.
+Confira disponibilidade antes de iniciar:
+
+```powershell
+python scripts/check_models.py --model gpt-6.2-sol
+if ($LASTEXITCODE -eq 0) { codex --strict-config --model gpt-6.2-sol }
+```
+
+Para tarefas complexas, a preferência local é GPT-6.2 Astra; Sol é a opção
+selecionada para E01. Veja [seleção de modelos](docs/models.md) para trocar
+modelos por papel, entender a herança e tratar indisponibilidade sem fallback.
 
 Prompt inicial sugerido:
 
@@ -85,6 +96,7 @@ para conceder escrita a todos os repositórios do catálogo.
 - [Arquitetura e limites](docs/architecture.md)
 - [Segurança e aprovações](docs/security.md)
 - [Compatibilidade e fontes](docs/compatibility.md)
+- [Modelos e preflight](docs/models.md)
 - [Roadmap](docs/roadmap.md)
 - [Workflow de implementação](workflows/implement-feature.md)
 - [Cenários de avaliação](evaluations/scenarios.md)

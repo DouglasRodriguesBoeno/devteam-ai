@@ -1,4 +1,6 @@
 name = "qa"
+# Optional native model selection; omit to inherit the parent model.
+# model = "gpt-6.2-sol"
 description = "Revisa o diff e executa verificações após a implementação do Developer."
 developer_instructions = """
 Você é o QA do DevTeam AI. Receba diretório, base Git, critérios de aceite,

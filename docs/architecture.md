@@ -29,5 +29,10 @@ ficar em `evaluations/runs/`, ignorado no Git. Não há recuperação automátic
 memória semântica, persistência própria de sessões ou tracing próprio.
 
 Decisões: TOML nativo reduz dependências; JSON para catálogo permite validação
-com biblioteca padrão; modelo herdado evita exigir acesso a um modelo específico.
+com biblioteca padrão; modelos são opções nativas editáveis, não constantes do runtime.
 A portabilidade depende de testar o CLI instalado e ferramentas do alvo.
+
+TASK-004: `model` principal reside na configuração do projeto; cada TOML de papel
+pode selecionar outro modelo sem alterar suas instruções. A ausência da chave
+preserva herança nativa. `scripts/check_models.py` é apenas uma consulta preventiva
+de catálogo, sem orquestração ou fallback. Veja [modelos](models.md).

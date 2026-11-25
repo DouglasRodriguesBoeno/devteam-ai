@@ -18,3 +18,8 @@ Após atualizar o CLI, execute a validação offline e um smoke test de delegaç
 Se agentes não aparecerem, confira confiança do projeto, arquivos TOML e versão.
 Não traduza uma falha em execução monolítica silenciosa.
 Use o CLI para este procedimento; a configuração do app não é pressuposta.
+
+TASK-004 (18/11/2026): CLI `0.169.0-alpha.11.1`. A preferência principal passou
+a ser local; campos opcionais `model` e `model_reasoning_effort` dos agentes são
+aceitos pelo validador. Nenhum slug é fixado no código de validação.
+Consulte [modelos](models.md) e [evidências TASK-004](task004-validation.md).
